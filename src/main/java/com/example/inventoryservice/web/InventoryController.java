@@ -1,5 +1,6 @@
 package com.example.inventoryservice.web;
 
+import com.example.inventoryservice.domain.InventoryResponse;
 import com.example.inventoryservice.domain.entities.Inventory;
 import com.example.inventoryservice.service.InventoryService;
 import org.springframework.http.HttpStatus;
@@ -29,9 +30,9 @@ public class InventoryController {
         return inventoryService.getAllInventories();
     }
 
-    @GetMapping("/{skuCode}")
+    @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    private Boolean idInStock(@PathVariable String skuCode){
+    private List<InventoryResponse> idInStock(@RequestParam List<String> skuCode){
         return inventoryService.findBySkuCode(skuCode);
     }
 
